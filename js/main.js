@@ -86,6 +86,7 @@ $(document).ready(function() {
 
         winnums = data.winnums;
 
+        $("#title").text(data.title);
         $("#header").text(data.header);
         $("#question").text("Question: " + data.question);
         $("#bigText").text(data.bingo);
