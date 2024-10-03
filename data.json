@@ -2,19 +2,19 @@
     "title": "BINGO",
     "header": "Developer BINGO",
     "bingo": "BINGO",
-    "win": "You won!",
-    "question": "Mammals?",
+    "win": "You made the corners!",
+    "question": "Come on tap some squares!",
     "cell": [
-        {"id": "cell0", "value": "Elephant", "selected": false},
-        {"id": "cell1", "value": "Eagle", "selected": false},
-        {"id": "cell2", "value": "Tiger", "selected": false},
-        {"id": "cell3", "value": "Lizard", "selected": false},
-        {"id": "cell4", "value": "Shark", "selected": false},
-        {"id": "cell5", "value": "Frog", "selected": false},
-        {"id": "cell6", "value": "Dolphin", "selected": false},
-        {"id": "cell7", "value": "Crocodile", "selected": false},
-        {"id": "cell8", "value": "Kangaroo", "selected": false}
+        {"id": "cell0", "value": "Push to wrong branch", "selected": false},
+        {"id": "cell1", "value": " \"Vertical Slice\" ", "selected": false},
+        {"id": "cell2", "value": "Sorry I was on mute", "selected": false},
+        {"id": "cell3", "value": "Have installed Linux this year", "selected": false},
+        {"id": "cell4", "value": "3 coffees minimum", "selected": false},
+        {"id": "cell5", "value": "I have a server running at home", "selected": false},
+        {"id": "cell6", "value": "Off by one error", "selected": false},
+        {"id": "cell7", "value": "It's scalable", "selected": false},
+        {"id": "cell8", "value": "Lose work during merge", "selected": false}
     ],
     "winnums": [0,2,6,8],
-    "gift": "You can ask the organizers for a gift!"
+    "gift": "Sometimes life is all about what's in the corners."
 }

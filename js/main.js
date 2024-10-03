@@ -88,7 +88,7 @@ $(document).ready(function() {
 
         $("#title").text(data.title);
         $("#header").text(data.header);
-        $("#question").text("Question: " + data.question);
+        $("#question").text(data.question);
         $("#bigText").text(data.bingo);
         $("#winText").text(data.win);
         $("#gift").text(data.gift);
