@@ -92,6 +92,7 @@ $(document).ready(function() {
         $("#bigText").text(data.bingo);
         $("#winText").text(data.win);
         $("#gift").text(data.gift);
+        $("#reset").text(data.reset);
 
         // Shuffle the cell array
         //var cell = shuffleArray(data.cell.slice());
@@ -129,14 +130,18 @@ $(document).ready(function() {
 
         if (checkSelectedCells(cells, winnums)) {
             $('#win').show();
-            $('#gameBoard').hide();
         }
 
     });
 
     $('#win').click(function() {
+        $('#win').hide();
+    });
+
+    $('#reset').click(function() {
         location.reload(true);  // Forces the browser to reload the page from the server (ignoring the cache)
     });
+
 
     // $("#debug").text("Debug");
     
