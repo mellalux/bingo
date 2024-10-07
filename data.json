@@ -3,6 +3,7 @@
     "header": "Developer BINGO",
     "bingo": "BINGO",
     "win": "You made the corners!",
+    "reset": "Reset",
     "question": "Come on tap some squares!",
     "cell": [
         {"id": "cell0", "value": "Push to wrong branch", "selected": false},
