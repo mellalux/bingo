@@ -1,7 +1,7 @@
 
-# Developer BINGO
+# BINGO
 
-Developer BINGO is a simple web application where users can interact with a grid of cells containing different data. The goal is to select the relevant cells and achieve a winning combination.
+BINGO is a Bingo web application where users interact with a grid of cells related to various topics such as home loans and electric vehicle experiences. The goal is to select cells that answer questions correctly to win the game.
 
 ## Table of Contents
 
@@ -16,87 +16,74 @@ Developer BINGO is a simple web application where users can interact with a grid
 
 ## Features
 
-- Interactive grid with data inside.
-- Multiple winning conditions (e.g., corners, diagonals).
-- Visual feedback when selecting cells.
-- Shuffle functionality to randomize the grid.
-- Responsive design using Bootstrap.
-- Service worker for offline functionality.
+- Interactive Bingo grid with themed questions and answers.
+- Real-time feedback on selected answers.
+- Support for multiple questions, each with unique answers.
+- Visual indication for correct and incorrect answers.
+- Fully responsive layout using CSS and Bootstrap.
+- Progressive Web App (PWA) capabilities with offline access through a service worker.
 
 ## Project Structure
 
 ```
 .
-├── index.html         # Main HTML file
-├── manifest.json      # Web manifest file for PWA
-├── service-worker.js  # Service worker for offline support
-├── data.json          # JSON file containing the Bingo data
-├── js/main.js         # JavaScript file for game logic
-├── css/styles.css     # Custom CSS for the application
-└── icons/             # Application icons for different devices
+├── index.html             # Main HTML file for the Bingo application
+├── data.json              # JSON file containing questions, answers, and settings
+├── js/main.js             # JavaScript file for game logic and interactivity
+├── css/styles.css         # Custom CSS for styling the application
+├── manifest.json          # Web App Manifest for PWA configuration
+├── service-worker.js      # Service worker for offline support
+└── icons/                 # Application icons for different devices
 ```
+
+### Key Files
+
+- **index.html**: Contains the structure and layout of the Bingo game, including the grid and buttons.
+- **data.json**: Holds configuration data such as questions, answers, and winning conditions.
+- **main.js**: Implements the game logic, including handling clicks, checking win conditions, and resetting the game.
+- **styles.css**: Provides responsive and device-specific styling for the game.
+- **manifest.json**: Defines the PWA settings and icons.
+- **service-worker.js**: Caches assets for offline use.
 
 ## Getting Started
 
-To run the application locally, follow these steps:
+To run the game locally:
 
-1. Clone the repository or download the project files.
-2. Open `index.html` in your web browser.
+1. Clone or download the project files.
+2. Open `index.html` in a modern web browser.
 
-Alternatively, you can deploy the project on any static web server for wider access.
+For better accessibility, you may host the project on any static server or deploy it as a Progressive Web App (PWA).
 
 ## How to Play
 
-1. The Bingo grid displays different information. Click on the cells that apply to you.
-2. When a winning pattern (e.g., a diagonal or corners) is achieved, a success message will appear.
-3. Use the "Reset" button to clear your selections and start a new game.
+1. Begin by selecting the answers you believe are correct from the Bingo grid on the main page.
+2. When all correct answers are selected, and no incorrect ones are chosen, you win the game.
+3. If you select an incorrect answer, you’ll receive a prompt to try again.
+4. Click **Reset** to start a new round.
 
 ## Customization
 
-You can customize the game by editing the `data.json` file. This file allows you to:
+You can customize the game through the `data.json` file:
 
-- Change the grid data. Put there even image tags.
-- Modify the winning patterns and associated messages.
-- Modify all kind of texts on page.
-- Set game grid size. Default is 3x3.
-
-### Example `data.json` Structure:
-
-```json
-{
-    "title": "BINGO",
-    "header": "Elektriauto BINGO",
-    "bingo": "BINGO",
-    "reset": "Uuesti",
-    "question": "Puuduta ruutu, kui see puudutab sind",
-    "squareroot": 3,
-    "texts": [
-        "1", "2", "3", "4", "5", 
-        "6", "7", "8", "9", "10", 
-        "11", "12", "13", "14", "15", 
-        "16", "17", "18", "19", "20", 
-        "21", "22", "23", "24", "25"
-    ],
-    "variant": [
-        {"num": [0, 2, 6, 8], "win": "Nurgad koos!", "gift": "Täna nurgad bingos, homme omanik elektriauto passis."},
-        {"num": [0, 4, 8], "win": "Diagonaal!", "gift": "Vahel lihtsalt kisub diagonaaliks."},
-        {"num": [2, 4, 6], "win": "Yes! Diagonaal!", "gift": "Pikim diagonaal eestis on Narvast Kuressaarde."}
-    ]
-}
-```
-
+- **title**: Title displayed on the webpage.
+- **header**: Header text displayed above the game grid.
+- **questions**: Array containing each question object. Each object includes:
+  - **question**: The question text.
+  - **answers**: Array of answers, each with `value` (text or image) and `isCorrect` (boolean).
+  - **winText**, **bigText**, **descText**: Text displayed upon winning.
+  - **wrongText** and **tryAgain**: Text displayed for incorrect selections.
+  
 ## Technologies Used
 
-- **HTML5** for structuring the web page.
-- **CSS3 (Bootstrap)** for responsive design and layout.
-- **JavaScript (ES6)** for game logic and dynamic updates.
-- **jQuery** for DOM manipulation and event handling.
-- **Service Worker** for offline capabilities (as a Progressive Web App).
+- **HTML5** for page structure.
+- **CSS3** and **Bootstrap** for responsive design and styling.
+- **JavaScript (ES6)** and **jQuery** for game logic and interactivity.
+- **Service Worker** for PWA functionality and offline support.
 
 ## Service Worker
 
-The `service-worker.js` file enables the app to work offline by caching important files, such as HTML, CSS, JavaScript, and images. This improves performance and allows users to access the app without an internet connection.
+The `service-worker.js` file caches necessary assets for offline access, making the game playable even without an internet connection.
 
 ## License
 
-This project is licensed under the MIT License. You are free to use, modify, and distribute the application with proper attribution.
+This project is licensed under the MIT License. You are free to use, modify, and distribute it as long as appropriate credit is given.
