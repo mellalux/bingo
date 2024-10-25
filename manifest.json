@@ -2,7 +2,7 @@
     "name": "BINGO Game",
     "short_name": "BINGO",
     "description": "This is a simple Bingo web application called **BINGO** where users can interact with a grid of cells.",
-    "start_url": "index.html",
+    "start_url": "/bingo/",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#000000",
