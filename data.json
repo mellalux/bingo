@@ -26,8 +26,8 @@
             "tryAgain": "Proovi Uuesti."
         },
         {
-            "header": "Koduostu QUIZ",
-            "question": "What have you done regarding car maintenance and charging?",
+            "header": "QUIZ",
+            "question": "Küsimus",
             "answers": [
                 { "value": "Jätan alati talverehvide vahetuse viimasele minutile", "isCorrect": false },
                 { "value": "Olen kunagi unustanud auto võtmed sisse", "isCorrect": true },
@@ -41,13 +41,13 @@
             ],
             "bigText": "Tubli!",
             "winText": "Leidsid üles tõesed väited.",
-            "descText": "Keskmine kodulaenusumma Eestis on 133 000 eurot, mis võetakse keskmiselt 26 aastaks.",
+            "descText": "",
             "wrongText": "Vale väide!",
             "tryAgain": "Proovi Uuesti."
         },
         {
-            "header": "Koduostu QUIZ",
-            "question": "What challenges or difficulties have you faced with electric cars?",
+            "header": "QUIZ",
+            "question": "Küsimus",
             "answers": [
                 { "value": "Olen pidanud laadima autot avariirežiimis", "isCorrect": false },
                 { "value": "Tean kedagi, kes laeb autot ainult kodus", "isCorrect": false },
@@ -61,7 +61,7 @@
             ],
             "bigText": "Tubli!",
             "winText": "Leidsid üles tõesed väited.",
-            "descText": "Keskmine kodulaenusumma Eestis on 133 000 eurot, mis võetakse keskmiselt 26 aastaks.",
+            "descText": "",
             "wrongText": "Vale väide!",
             "tryAgain": "Proovi Uuesti."
         }
