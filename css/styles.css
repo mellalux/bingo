@@ -54,7 +54,7 @@ body {
     margin-top: 15px;
 }
 
-#win {
+#result {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -64,7 +64,7 @@ body {
     height: 100%;
 }
 
-#win h1#bigText {
+#result h1#bigText {
     text-align: center;
     display: block;
     color: #ff4800;
@@ -73,8 +73,8 @@ body {
     margin-bottom: 35px;
 }
 
-#win p#winText {
-    display: block;
+#result p#winText {
+    text-align: center;
     color: rgb(65, 0, 0);
     font: 2.8em arial;
     font-weight: bold;
@@ -82,7 +82,10 @@ body {
     text-align: center;
 }
 
-#win p#gift {
+#result p#descText {
+    max-width: 600px;
+    margin: 35px;
+    text-align: center;
     color: rgb(65, 0, 0);
     font: 1.24em arial;
     font-weight: bold;

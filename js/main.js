@@ -1,33 +1,26 @@
 $(document).ready(function() {
     
-    // Function to check if specific cells are selected
-    const checkSelectedCells = (function(cells, indexes) {
-        // Ensure that 'indexes' is an array
-        if (!Array.isArray(indexes)) {
-            console.error("The 'indexes' parameter must be an array.");
-            return false;
-        }
-
-        // Ensure that 'cells' is defined and has enough elements
-        if (!Array.isArray(cells) || cells.length === 0) {
-            console.error("The 'cells' array is not defined or empty.");
-            return false;
-        }
-
-        // Use 'every()' to check if all specific cells are selected
-        var allSelected = indexes.every(function(index) {
-            // Ensure the index is valid within the cells array
-            if (cells[index] && cells[index].selected !== undefined) {
-                return cells[index].selected; // Return true if the cell is selected
-            } else {
-                return false;
+    const checkSelectedCells = (function(cells) {
+        // Kontrolli, kas kõik "isCorrect: true" lahtrid on valitud
+        var allCorrectSelected = cells.every(function(cell) {
+            // Kui lahter on õige (isCorrect: true), siis peab see olema ka valitud (selected: true)
+            if (cell.isCorrect) {
+                return cell.selected;
             }
+            return true; // Jätame valed lahtrid vahele (kontrollime neid hiljem)
         });
-        
-        return allSelected; // Return true if all cells are selected, else false
+
+        // Kontrolli, et ükski vale lahter ("isCorrect: false") poleks valitud
+        var noIncorrectSelected = cells.every(function(cell) {
+            // Kui lahter on vale (isCorrect: false), siis see ei tohi olla valitud (selected: false)
+            return !(cell.selected && !cell.isCorrect);
+        });
+
+        // Tagasta tõene ainult siis, kui kõik õiged on valitud ja ükski vale pole valitud
+        return allCorrectSelected && noIncorrectSelected;
     });
 
-    const createGrid = (function(gridSize, answers) {
+    const createGrid = (function(gridSize) {
 
         // Shuffle the answers array to ensure unique random text selection
         const shuffleArray = function(array) {
@@ -37,10 +30,27 @@ $(document).ready(function() {
             }
             return array;
         };
+
+        answers = quiz.answers.slice();
     
-        // Shuffle the answers array
-        const shuffledTexts = shuffleArray(answers.slice());
-    
+        // Ensure 'answers' exists in the data
+        if (!answers || !Array.isArray(answers)) {
+            console.error("No valid 'answers' array found in JSON.");
+            return;
+        }
+
+        let cellTexts = {};
+
+        // Shuffle the answers array if shuffle is true
+        if (shuffle) {
+            cellTexts = shuffleArray(answers.slice());
+        } else {
+            cellTexts = answers.slice();
+        }
+        
+        $("#header").text(quiz.header);
+        $("#question").html(quiz.question);
+
         // Get the grid element
         var $grid = $('#grid');
         $grid.empty(); // Clear any existing content
@@ -64,11 +74,9 @@ $(document).ready(function() {
             // Initialize cells[index] as an object
             cells[index] = {};  // Ensure cells[index] is an object
             cells[index].id = 'cell' + index;
-            cells[index].text = shuffledTexts[index].value;  // Assign a unique random text        
-            cells[index].isCorrect = shuffledTexts[index].isCorrect;  // Assign a unique random text
+            cells[index].text = cellTexts[index].value;  // Assign a unique random text        
+            cells[index].isCorrect = cellTexts[index].isCorrect;  // Assign a unique random text
             cells[index].selected = false;
-
-            console.info(cells[index].text, cells[index].isCorrect)
     
             // Create a new column with custom HTML
             var $newCol = $('<div>', { id: 'cell' + index, class: 'col cell unselected' });
@@ -97,35 +105,33 @@ $(document).ready(function() {
     });
 
     var cells = [];
-    var winnums;
-    var answers;
+    var quiz;
     var gridSize;
+    var shuffle;
     
-    $('#win').hide();
+    $('#result').hide();
 
     // Fetch the JSON data from an external file
     $.getJSON("data.json", function(data) {
 
-        winnums = data.variant;
-
         $("#title").text(data.title);
-        $("#header").text(data.header);
-        $("#question").text(data.question);
-        $("#bigText").text(data.bingo);
         $("#reset").text(data.reset);
 
-        // Ensure 'answers' exists in the data
-        if (!data.answers || !Array.isArray(data.answers)) {
-            console.error("No valid 'answers' array found in JSON.");
-            return;
+        if (data.fixquestion !== -1) {
+            quiz = data.questions[data.fixquestion];
+            console.log(quiz)
+            console.info('Fix question number:',data.fixquestion, ' - Question:', quiz.question);
+        } else {
+            const questionCount = data.questions.length;
+            var questionNumber = Math.floor(Math.random() * questionCount);
+            quiz = data.questions[questionNumber];
+            console.info('Random question number:',questionNumber, ' - Question:', quiz.question);
         }
-        
-        answers = data.answers.slice();
  
-        // Ruutjuur 
         gridSize = data.squareroot;
+        shuffle = data.shuffledtexts;
 
-        createGrid(gridSize, answers);
+        createGrid(gridSize);
 
     }).fail(function() {
         console.error('Failed to load JSON data.');
@@ -149,26 +155,31 @@ $(document).ready(function() {
             $(this).removeClass('selected');
         }
 
-        for (let i = 0; i < winnums.length; i++) {
-            if (checkSelectedCells(cells, winnums[i].num)) {
-                $("#winText").text(winnums[i].win);
-                $("#gift").text(winnums[i].gift);
+        if (checkSelectedCells(cells)) {  
+            $("#bigText").html(quiz.bigText);
+            $("#winText").html(quiz.winText);
+            $("#descText").html(quiz.descText);
+            $('#result').show();
+        } 
         
-                $('#win').show();
-            }                
+        if (cells[cellIndex].isCorrect === false) {
+            $("#bigText").html(quiz.wrongText);
+            $("#winText").html(quiz.tryAgain);
+            $("#descText").html("");
+            $('#result').show();
         }
 
     });
 
-    $('#win').on('click', function() {
+    $('#result').on('click', function() {
         resetStates();
-        createGrid(gridSize, answers);
-        $('#win').hide();
+        createGrid(gridSize);
+        $('#result').hide();
     });
 
     $('#reset').on('click', function() {
         resetStates();
-        createGrid(gridSize, answers);
+        createGrid(gridSize);
     });
 
 });
