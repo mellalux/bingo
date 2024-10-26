@@ -1,9 +1,9 @@
 {
     "title": "BINGO",
     "reset": "Uuesti",
-    "squareroot": 3,
+    "squareRoot": 3,
     "shuffledtexts": false,
-    "fixquestion": 0,
+    "fixedQuestion": 0,
     "questions": [
         {
             "header": "Koduostu QUIZ",

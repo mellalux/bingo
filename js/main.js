@@ -117,10 +117,10 @@ $(document).ready(function() {
         $("#title").text(data.title);
         $("#reset").text(data.reset);
 
-        if (data.fixquestion !== -1) {
-            quiz = data.questions[data.fixquestion];
+        if (data.fixedQuestion !== -1) {
+            quiz = data.questions[data.fixedQuestion];
             console.log(quiz)
-            console.info('Fix question number:',data.fixquestion, ' - Question:', quiz.question);
+            console.info('Fix question number:',data.fixedQuestion, ' - Question:', quiz.question);
         } else {
             const questionCount = data.questions.length;
             var questionNumber = Math.floor(Math.random() * questionCount);
@@ -128,7 +128,7 @@ $(document).ready(function() {
             console.info('Random question number:',questionNumber, ' - Question:', quiz.question);
         }
  
-        gridSize = data.squareroot;
+        gridSize = data.squareRoot;
         shuffle = data.shuffledtexts;
 
         createGrid(gridSize);
